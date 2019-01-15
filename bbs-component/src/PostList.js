@@ -17,7 +17,7 @@ class PostList extends Component{
                         <PostItem 
                             title={item.title}
                             author={item.author}
-                            date={item.date}
+                            data={item.date}
                             
                             />)
                    }
