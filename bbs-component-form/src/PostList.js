@@ -2,34 +2,7 @@ import React, {Component} from "react";
 import PostItem from "./PostItem";
 //引用针对此组件页面的样式表
 import "./PostList.css";
-// const data = [
-//     {title:"大家一起来讨论React吧", author:"张三", date:"2017-09-01 18:00:21"},
-//     {title:"前段框架，最爱哪一个", author:"张三", date:"2017-09-01 18:00:21"},
-//     {title:"Web App的时代已经到来", author:"张三", date:"2017-09-01 18:00:21"},
-// ];
-//无状态组件PostList
-// class PostList extends Component{
-//     render(){
-//         return(
-//             <div>
-//                 帖子列表：
-//                 <ul>
-//                    {
-//                        data.map(item => 
-//                         <PostItem 
-//                             title={item.title}
-//                             author={item.author}
-//                             data={item.date}
-                            
-//                             />)
-//                    }
-//                 </ul>
-//             </div>
-//         )
-//     }
-// }
 
-//将PostList设计成有状态组件，负责帖子列表数据的获取以及点赞行为处理
 class PostList extends Component{
     constructor(props){
         super(props);
@@ -38,6 +11,7 @@ class PostList extends Component{
         };
         this.timer = null //定时器
         this.handleVote = this.handleVote.bind(this);//ES6 class中，必须手动绑定方法this的指向
+        this.handleSave = this.handleSave.bind(this);
     }
     //组件挂载阶段，组件被创建，执行初始化，并被挂载到DOM中，完成组件第一次渲染
     //componentDidMount是挂载阶段被调用第四个方法，只会被调用一次，已经获得DOM结构，依赖DOM节点的操作放到这个方法中
@@ -76,6 +50,17 @@ class PostList extends Component{
         })
 
     }
+    //保存帖子
+    handleSave(post){
+        //根据post的id过滤出当前要更新的post
+        const posts= this.state.posts.map(item => {
+            const newItem = item.id ===post.id? post : item;
+            return newItem
+        })
+        this.setState({
+            posts
+        })
+    }
 
     render(){
         return(
@@ -83,15 +68,12 @@ class PostList extends Component{
                 <h2>话题列表：</h2>
                 <ul>
                     {
-                       //使用列表的id作为key
-                       // this.state.posts.map(item => 
-                       //如果item没有id,可以用索引位置index作为key，但并不推荐用索引作为key，因为如果数据变化，索引会变化，会造成重新渲染
-                       this.state.posts.map((item,index) =>
+                       this.state.posts.map((item) =>
                             <PostItem 
-                       //    key={item.id}
-                             key={index}
+                            key={item.id}
                              post={item}
                              onVote={this.handleVote}
+                             onSave={this.handleSave}
                              />
                             )
                     }

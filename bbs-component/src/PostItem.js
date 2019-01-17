@@ -80,7 +80,7 @@ function PostItem(props){
                      </button> 
                      &nbsp;*/}
                      <span>
-                         <img src={likePng} onClick={handleClick} />
+                         <img src={likePng} onClick={handleClick} alt="Good"/>
                      </span>
                      <span>
                        
