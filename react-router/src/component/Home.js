@@ -1,8 +1,9 @@
 import React,{Component} from "react"
 import { Route } from "react-router-dom";
-import {PostList} from "./PostList"
-import {Post} from "./Post"
-import {Header} from "./Header"
+import PostList from "./PostList"
+import Post from "./Post"
+import Header from "./Header";
+
 class Home extends Component{
     constructor(props){
         super(props);
@@ -26,11 +27,11 @@ class Home extends Component{
 
     render(){
         const {match, location}= this.props;
-        const{username} = this.state;
+        const{userName} = this.state;
         return (
             <div>
                 <Header
-                username={username}
+                username={userName}
                 onLogout={this.handleLogout}
                 location={location}
                 />
@@ -38,12 +39,12 @@ class Home extends Component{
                 <Route
                 path ={match.url}
                 exact
-                render={props => <PostList username={username} {...props}/>}
+                render={props => <PostList username={userName} {...props}/>}
                 />
                 {/* 帖子详情路由配置 */}
                 <Route
                 path={`${match.url}/:id`}
-                render={props => <Post username={username} {...props}/>}
+                render={props => <Post username={userName} {...props}/>}
                 />
             </div>
         );

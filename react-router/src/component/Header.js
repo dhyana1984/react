@@ -1,5 +1,7 @@
 
-import { Component } from 'react';
+import React,{ Component } from 'react';
+import { Link } from "react-router-dom";
+import  "./Header.css"
 
 class Header extends Component{
     render(){
@@ -14,7 +16,7 @@ class Header extends Component{
                     {username && username.length >0 ? (
                         <span className="user">
                             当前用户：{username}&nbsp;
-                            <button onClick={onLougout}>注销</button>
+                            <button onClick={onLogout}>注销</button>
                         </span>
                     ):(
                         <span className="right-link">

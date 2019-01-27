@@ -1,6 +1,8 @@
-import { Component } from 'react';
+import React,{ Component } from 'react';
 import {post} from '../utils/reuqest';
 import url from "../utils/url"
+import { Redirect } from "react-router-dom";
+import "./Login.css"
 class Login extends Component{
     constructor(props) {
         super(props);
@@ -46,6 +48,7 @@ class Login extends Component{
                 alert(data.error.message || "login failed");
             }else{
                 //登录成功保存session
+    
                 sessionStorage.setItem("userId",data.userId);
                 sessionStorage.setItem("userName", username);
                 this.setState({
@@ -72,7 +75,7 @@ class Login extends Component{
                     </label>
                     <label>
                         密码：
-                        <input name="username" type="password" value={this.state.password} onChange={this.handleChange}/>
+                        <input name="password" type="password" value={this.state.password} onChange={this.handleChange}/>
 
                     </label>
                 </div>
