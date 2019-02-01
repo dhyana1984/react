@@ -27,7 +27,7 @@ export const actions = {
     removeError: () =>({
         type: types.REMOVE_ERROR
     })
-}
+} 
 
 //reducer
 export const reducer = (state = initialState,action) => {

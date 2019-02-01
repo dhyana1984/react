@@ -12,8 +12,8 @@ const initialState = {
 export const types = {
     LOGIN: "AUTH/LOGIN",    //登录
     LOGOUT: "AUTH/LOGOUT"   //注销
-}
-
+} 
+ 
 //action creators
 export const actions = {
     //异步action, 执行登录验证
