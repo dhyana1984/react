@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
-import { post } from "../utils/reuqest";
-import url from "../utils/url";
-import "./Login.css";
+import { post } from "../../utils/reuqest";
+import url from "../../utils/url";
+import "./style.css";
 
 class Login extends Component {
   constructor(props) {

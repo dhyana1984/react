@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import CommentsView from "./CommentsView";
-import "./CommentList.css";
+import CommentsView from "../../../../components/CommentsView";
+import "./style.css";
 
 class CommentList extends Component {
   constructor(props) {

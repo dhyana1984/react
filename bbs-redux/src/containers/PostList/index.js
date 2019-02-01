@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import PostsView from "./PostsView";
-import PostEditor from "./PostEditor";
-import { get, post } from "../utils/reuqest";
-import url from "../utils/url";
-import "./PostList.css";
+import PostsView from "./components/PostsView";
+import PostEditor from "../Post/components/PostEditor";
+import { get, post } from "../../utils/reuqest";
+import url from "../../utils/url";
+import "./style.css";
 
 class PostList extends Component {
   constructor(props) {
