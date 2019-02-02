@@ -78,7 +78,7 @@ const convertToPlainStructure = comments =>{
         if(!authorsById[item.author.id]){
             authorsById[item.author.id]=item.author;
         }
-    })
+    })  
     return {
         comments:commentsById,
         commentIds,

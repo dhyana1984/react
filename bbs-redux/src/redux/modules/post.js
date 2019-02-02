@@ -8,7 +8,7 @@ import {combineReducers} from "redux"
 const initialState={
     byId:{},
     allIds:[]
-}
+} 
 export const types = {
     CREATE_POST:"POSTS/CREATE_POST",            //新简帖子
     UPDATE_POST:"POSTS/UPDATE_POST",            //修改帖子
