@@ -1,3 +1,5 @@
+//Auth模块负责应用的登录和注销
+
 import {post} from "../../utils/reuqest"
 import url from "../../utils/url"
 import {actions as appActions} from "./app"
