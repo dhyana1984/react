@@ -1,5 +1,5 @@
 import React from "react";
-import { getFormatDate } from "../../../../utils/reuqest";
+import { getFormatDate } from "../../../../utils/date";
 import "./style.css";
 import like from "../../../../images/like.png";
 

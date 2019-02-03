@@ -1,85 +1,75 @@
 import React, { Component } from "react";
+import { bindActionCreators } from "redux";
 import PostsView from "./components/PostsView";
 import PostEditor from "../Post/components/PostEditor";
-import { get, post } from "../../utils/reuqest";
-import url from "../../utils/url";
+import { connect } from 'react-redux';
 import "./style.css";
+import { getLoggedUser } from "../../redux/modules/auth";
+import { getPostListWithAuthors } from "../../redux/modules";
+import {actions as postActions} from "../../redux/modules/posts"
+import {actions as uiActions, isAddDialogOpen} from "../../redux/modules/ui"
 
 class PostList extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      posts: [],
-      newPost: false
-    };
-    this.handleCancel = this.handleCancel.bind(this);
-    this.handleSave = this.handleSave.bind(this);
-    this.handleNewPost = this.handleNewPost.bind(this);
-    this.refreshPostList = this.refreshPostList.bind(this);
-  }
 
   componentDidMount() {
-    this.refreshPostList();
+    this.props.fetchAllPosts()
+
   }
-  
-  // 获取帖子列表
-  refreshPostList() {
-    // 调用后台API获取列表数据，并将返回的数据设置到state中
-    get(url.getPostList()).then(data => {
-      if (!data.error) {
-        this.setState({
-          posts: data,
-          newPost: false
-        });
-      }
-    });
-  }
-  
+
   // 保存帖子
-  handleSave(data) {
-    // 当前登录用户的信息和默认的点赞数，同帖子的标题和内容，共同构成最终待保存的帖子对象
-    const postData = { ...data, author: this.props.userId, vote: 0 };
-    post(url.createPost(), postData).then(data => {
-      if (!data.error) {
-        // 保存成功后，刷新帖子列表
-        this.refreshPostList();
-      }
-    });
+  handleSave=data=> {
+    this.props.createPost(data.title, data.content)
   }
   
   // 取消新建帖子
-  handleCancel() {
-    this.setState({
-      newPost: false
-    });
+  handleCancel =() => {
+    this.props.closeAddDialog();
   }
   
   // 新建帖子
-  handleNewPost() {
-    this.setState({
-      newPost: true
-    });
+  handleNewPost = ()=> {
+    this.props.openAddDialog();
   }
 
   render() {
-    const { userId } = this.props;
+    const { posts,user, isAddDialogOpen } = this.props;
     
     return (
       <div className="postList">
         <div>
-          <h2>帖子列表</h2>
+          <h2>话题列表</h2>
            {/* 只有在登录状态，才显示发帖按钮 */}
-          {userId ? <button onClick={this.handleNewPost}>发帖</button> : null}
+          {user.userId ? <button onClick={this.handleNewPost}>发帖</button> : null}
         </div>
         {/* 若当前正在创建新帖子，则渲染PostEditor组件 */}
-        {this.state.newPost ? (
+        {isAddDialogOpen ? (
           <PostEditor onSave={this.handleSave} onCancel={this.handleCancel} />
         ) : null}
         {/* PostsView显示帖子的列表数据 */}
-        <PostsView posts={this.state.posts} />
+        <PostsView posts={posts} />
       </div>
     );
   }
 }
 
-export default PostList;
+//注入state
+const mapStateToProps = (state,props) =>{
+  return{
+    user:getLoggedUser(state),          //当前登录用户
+    posts:getPostListWithAuthors(state),  //帖子列表数据
+    isAddDialogOpen:isAddDialogOpen(state)  //新建帖子编辑框的UI状态
+  }
+}
+
+//注入action creator
+//bindActionCreators是redux的一个工具函数， 使用store的dispatch方法把参数对象中包含的每个action creator包裹起来，
+//这样就不需要显示调用dispatch方法发送action
+const mapDispatchToProps = dispatch =>{
+  return{
+    ...bindActionCreators(postActions,dispatch),
+    ...bindActionCreators(uiActions,dispatch)
+  }
+}
+
+
+export default connect(mapStateToProps,mapDispatchToProps)(PostList);

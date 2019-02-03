@@ -53,7 +53,7 @@ const reducer = (state=initialState, action) =>{
     switch(action.type){
         case types.LOGIN:
             return {...state, userId: action.userId, username: action.username}
-        case types.LOGIN:
+        case types.LOGOUT:
             return {...state, userId:null, username: null};
         default:
             return state;
@@ -61,3 +61,6 @@ const reducer = (state=initialState, action) =>{
 }
 
 export default reducer;
+
+// selectors
+export const getLoggedUser = state => state.auth;

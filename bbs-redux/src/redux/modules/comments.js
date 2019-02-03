@@ -95,7 +95,7 @@ const byPost = (state = initialState.byPost, action)=>{
         case types.CREATE_COMMENT:
             return {
                 ...state,
-                [actiom.postId]:[action.comment.id, ...state[action.postId]]
+                [action.postId]:[action.comment.id, ...state[action.postId]]
             };
         default:
             return state;

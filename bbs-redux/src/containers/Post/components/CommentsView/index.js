@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { getFormatDate } from "../../../../utils/reuqest";
 import "./style.css";
+import { getFormatDate } from './../../../../utils/date';
 
 class CommentsView extends Component {
   render() {

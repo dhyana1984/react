@@ -21,7 +21,7 @@ export const actions = {
         type: types.FINISH_REQUEST
     }),
     setError : error =>({
-        type:type.SET_ERROR,
+        type:types.SET_ERROR,
         error
     }),
     removeError: () =>({
@@ -35,7 +35,7 @@ export const reducer = (state = initialState,action) => {
         case types.START_REQUEST:
             //每接收一个API请求开始的action, requestQuantity加1
             return {...state, requestQuantity: state.requestQuantity +1};
-        case type.finishRequest:
+        case types.FINISH_REQUEST:
             //每接收一个API请求结束的action，requestQuantity减1
             return {...state, requestQuantity: state.requestQuantity -1}; 
         case types.SET_ERROR:
@@ -46,3 +46,14 @@ export const reducer = (state = initialState,action) => {
             return state; 
     }
 }
+
+//selector
+export const getError = state =>{
+    return state.app.error
+}
+
+export const getRequestQuantity = state =>{
+    return state.app.requestQuantity;
+}
+
+export default reducer
