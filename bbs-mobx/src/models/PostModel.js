@@ -1,4 +1,4 @@
-import { observable } from "mobx";
+import { observable,action } from "mobx";
 
 
 //PostModel类来描述帖子对应的state

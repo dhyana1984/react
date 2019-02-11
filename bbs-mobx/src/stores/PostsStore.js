@@ -1,4 +1,4 @@
-import { observable, toJS } from "mobx";
+import { observable, toJS,action } from "mobx";
 import PostModel from './../models/PostModel';
 
 
