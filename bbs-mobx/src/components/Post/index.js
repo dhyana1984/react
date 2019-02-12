@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import PostEditor from "./components/PostEditor";
-import PostView from "./components/PostView";
-import CommentList from "./components/CommentList";
+import PostEditor from "../PostEditor";
+import PostView from "../PostView";
+import CommentList from "../CommentList";
 import { get,post, put } from "../../utils/reuqest";
 import url from "../../utils/url";
 import "./style.css";
