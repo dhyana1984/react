@@ -1,6 +1,6 @@
 //AuthStore负责用户的登录认证
 
-import { computed, observable, action } from "mobx";
+import {  observable, action } from "mobx";
 
 class AuthStore{
     api;

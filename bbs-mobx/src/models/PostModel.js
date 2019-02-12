@@ -13,7 +13,7 @@ class PostModel{
     @observable updatedAt;
 
     constructor(store, id, title, content, vote, author, createdAt, updatedAt){
-        this.store = store,
+        this.store = store;
         this.id = id
         this.title = title
         this.content = content

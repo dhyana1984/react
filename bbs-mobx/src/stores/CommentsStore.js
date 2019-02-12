@@ -23,10 +23,10 @@ class CommentsStore{
             if(!data.error){
                 this.comments.clear()
                 data.forEach(item => this.comments.push(CommentModel.fromJS(this,item)))
-                return PromiseRejectionEvent.resolve();
+                return Promise.resolve();
             }else{
                 this.appStore.setError(data.error)
-                return PromiseRejectionEvent.reject();
+                return Promise.reject();
             }
         }))
     }

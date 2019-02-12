@@ -2,9 +2,11 @@ import React from "react";
 import { getFormatDate } from "../../../utils/date";
 import "./style.css";
 import like from "../../../images/like.png";
+import { observer } from "mobx-react";
 
 function PostView(props) {
   const { post, editable, onEditClick } = props;
+
   return (
     <div className="postView">
       <div>
@@ -31,4 +33,4 @@ function PostView(props) {
   );
 }
 
-export default PostView;
+export default observer(PostView);

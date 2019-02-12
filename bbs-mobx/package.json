@@ -18,5 +18,6 @@
   },
   "devDependencies": {
     "mobx-react-devtools": "^6.0.3"
-  }
+  },
+  "proxy": "https://d.apicloud.com/mcm/api"
 }

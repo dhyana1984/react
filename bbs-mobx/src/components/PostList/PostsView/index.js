@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import PostItem from "../PostItem";
+import { observer } from 'mobx-react';
 
+@observer
 class PostsView extends Component {
   render() {
-    console.log(this.props)
     const { posts } = this.props
     return (
       <ul>

@@ -1,7 +1,8 @@
 import React from "react";
-import { getFormatDate } from "../../../../utils/date";
+import { getFormatDate } from "../../../utils/date";
 import "./style.css";
-import like from "../../../../images/like.png";
+import like from "../../../images/like.png";
+import { observer } from "mobx-react";
 
 function PostItem(props) {
   const { post } = props;
@@ -24,4 +25,4 @@ function PostItem(props) {
   );
 }
 
-export default PostItem;
+export default observer(PostItem);

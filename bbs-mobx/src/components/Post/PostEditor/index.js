@@ -1,30 +1,28 @@
 import React, { Component } from "react";
 import "./style.css";
+import { observer } from "mobx-react";
+import { observable, action } from "mobx";
 
+@observer
 class PostEditor extends Component {
+  @observable title;
+  @observable content;
+
   constructor(props) {
     super(props);
     const { post } = this.props;
-    this.state = {
-      title: (post && post.title) || "",
-      content: (post && post.content) || ""
-    };
-    this.handleCancelClick = this.handleCancelClick.bind(this);
-    this.handleSaveClick = this.handleSaveClick.bind(this);
-    this.handleChange = this.handleChange.bind(this);
+    this.title=(post && post.title) ||""
+    this.content =(post && post.content) || ""
+
   }
 
   // 处理帖子的编辑信息
-  handleChange(e) {
+  @action handleChange = (e)=> {
     const name = e.target.name;
     if (name === "title") {
-      this.setState({
-        title: e.target.value
-      });
+      this.title= e.target.value
     } else if (name === "content") {
-      this.setState({
-        content: e.target.value
-      });
+      this.content = e.target.value
     } else {
     }
   }
@@ -37,8 +35,8 @@ class PostEditor extends Component {
   // 保存帖子
   handleSaveClick() {
     const data = {
-      title: this.state.title,
-      content: this.state.content
+      title: this.title,
+      content: this.content
     };
     // 调用父组件的回调函数执行真正的保存逻辑
     this.props.onSave(data);
@@ -51,13 +49,13 @@ class PostEditor extends Component {
           type="text"
           name="title"
           placeholder="标题"
-          value={this.state.title}
+          value={this.title}
           onChange={this.handleChange}
         />
         <textarea
           name="content"
           placeholder="内容"
-          value={this.state.content}
+          value={this.content}
           onChange={this.handleChange}
         />
         <button onClick={this.handleCancelClick}>取消</button>
