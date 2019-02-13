@@ -28,12 +28,12 @@ class PostEditor extends Component {
   }
   
   // 取消帖子的编辑
-  handleCancelClick() {
+  handleCancelClick= () =>{
     this.props.onCancel();
   }
   
   // 保存帖子
-  handleSaveClick() {
+  handleSaveClick = () =>{
     const data = {
       title: this.title,
       content: this.content

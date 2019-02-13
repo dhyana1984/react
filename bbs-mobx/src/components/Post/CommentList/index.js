@@ -18,14 +18,16 @@ class CommentList extends Component {
   // 处理新评论内容的变化
   @action handleChange = (e)=> {
     this.newComment= e.target.value
+    
   }
  
   // 保存新评论 
   handleClick= e=> {
+  //  alert(this.props.authStore.userId)
    
     if (this.newComment.length > 0) {
       const postId = this.props.postId
-      const userId = this.props.userId
+      const userId = this.props.authStore.userId
       const comment = {
         author:userId,
         post:postId,
@@ -41,7 +43,7 @@ class CommentList extends Component {
 
   render() {
     const { commentsStore, authStore } = this.props;
-
+    
     return (
       <div className="commentList">
         <div className="title">评论</div>
