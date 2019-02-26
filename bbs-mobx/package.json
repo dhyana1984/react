@@ -2,6 +2,7 @@
   "name": "todos-mobx",
   "version": "0.1.0",
   "private": true,
+  "homepage": ".",
   "dependencies": {
     "custom-react-scripts": "0.2.2",
     "mobx": "^5.9.0",
