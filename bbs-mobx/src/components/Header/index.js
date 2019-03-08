@@ -17,7 +17,7 @@ class Header extends Component {
             </span>
           ) : (
             <span className="right-link">
-              <Link to={{ pathname: "/login", state: { from: location } }}>
+              <Link to={{ pathname: "/BBS/Login", state: { from: location } }}>
                 登录
               </Link>
             </span>

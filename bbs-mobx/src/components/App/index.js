@@ -30,9 +30,9 @@ export default class APP extends Component{
               <div>
                   <Router>
                       <Switch>
-                          <Route exact path="/" component={AsyncHome} />
-                          <Route  path="/login" component={AsyncLogin} />
-                          <Route  path="/posts" component={AsyncHome} />
+                          <Route exact path="/bbs/" component={AsyncHome} />
+                          <Route  path="/bbs/login" component={AsyncLogin} />
+                          <Route  path="/bbs/posts" component={AsyncHome} />
                       </Switch>
                   </Router>
                   {errorDialog}
